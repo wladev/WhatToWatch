@@ -8,11 +8,13 @@ export class TVShowAPI {
         // console.log(response.data.results);
         return response.data.results
     }
+
+
+static async fetchRecommendations(tvShowId) {
+        const response = await axios.get(`${BASE_URL}tv/${tvShowId}/recommendations${API_KEY_PARAM}`)
+        // console.log("***Recommendations***", response.data.results);
+        return response.data.results
+    }
+   
 }
 
-export class TVShowListAPI {
-    static async fetchRecommandations() {
-        const response = await axios.get(`https://api.themoviedb.org/3/tv/27/recommandations`)
-        console.log(response.data.results);
-    }
-}
