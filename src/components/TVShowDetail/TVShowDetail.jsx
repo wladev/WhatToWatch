@@ -2,7 +2,7 @@ import { FiveStartRating } from "../FiveStartRating/FiveStartRating";
 import s from "./TVShowDetail.module.css";
 
 export function TVShowDetail({ tvShow }) {
-  console.log(tvShow);
+//   console.log(tvShow);
   const rating = tvShow.vote_average / 2;
   // console.log(rating);
   return (

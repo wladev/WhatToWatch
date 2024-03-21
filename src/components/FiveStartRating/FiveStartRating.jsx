@@ -6,7 +6,7 @@ export function FiveStartRating({rating}) {
     const starList = [];
 
     const starFillCount = Math.round(rating);
-    console.log("rating", starFillCount);
+    // console.log("rating", starFillCount);
 
     const hasStarHalf = rating - starFillCount >= 0.5;
 
