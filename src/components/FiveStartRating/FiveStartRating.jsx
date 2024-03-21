@@ -5,10 +5,10 @@ import { StarFill, Star as StartEmpty, StarHalf } from "react-bootstrap-icons";
 export function FiveStartRating({rating}) {
     const starList = [];
 
-    const starFillCount = Math.floor(rating);
+    const starFillCount = Math.round(rating);
     console.log("rating", starFillCount);
 
-    const hasStarHalf = rating - starFillCount >= 0.5
+    const hasStarHalf = rating - starFillCount >= 0.5;
 
     const emptyStarCount = 5 - starFillCount - (hasStarHalf ? 1 : 0);
 
