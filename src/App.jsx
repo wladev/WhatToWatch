@@ -9,6 +9,7 @@ import { TVShowDetail } from "./components/TVShowDetail/TVShowDetail";
 import logo from "./assets/images/logo.png";
 import { Logo } from "./components/Logo/Logo";
 import { TVShowList } from "./components/TVShowList/TVShowList";
+import { SearchBar } from "./components/SearchBar/SearchBar";
 
 
 
@@ -17,13 +18,21 @@ export function App() {
   const [currentTVShow, setCurrentTVShow] = useState();
   const [recommendations, setRecommendations] = useState([]);
 
+
+  async function searchTVShow(tvShowName) {
+    const searchResponse = await TVShowAPI.fetchByTitle(tvShowName);
+    if (searchResponse.length > 0) {
+      setCurrentTVShow(searchResponse[0])
+    }
+  }
+
+
   async function fetchPopulars() {
     const populars = await TVShowAPI.fetchPopulars();
     if (populars.length > 0){
       setCurrentTVShow(populars[9]);
     }
-  //   if(onclick(currentTVShow.id)){()=>{setCurrentTVShow(populars[recommendations.id])}
-  // }
+
 }
 
   async function fetchRecommendations(tvShowId) {
@@ -32,6 +41,7 @@ export function App() {
     setRecommendations(recommendations.slice(0,10))
     }
   }
+
 
   useEffect(() => {
     if (currentTVShow) {
@@ -42,8 +52,7 @@ export function App() {
   useEffect(() => {
       fetchPopulars()     
   }, []);
-  // console.log(currentTVShow);
-        console.log("recommendations ***" , recommendations)
+
     return ( <div className={s.main_container}
       style={{
         background: currentTVShow
@@ -55,7 +64,9 @@ export function App() {
         <div className="col-4">
           <div><Logo image={logo} title ="WhatToWatch" substitle = "Find a show you way like" /></div>
         </div>
-        <div className="col-md-12 col-lg-4"><input type="text"/></div>
+        <div className="col-md-12 col-lg-4">
+        <SearchBar onSubmit={searchTVShow}/>
+        </div>
       </div>
     </div>
     <div className={s.tv_show_detail}>{currentTVShow && <TVShowDetail tvShow={currentTVShow} />}</div>

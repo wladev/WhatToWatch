@@ -17,3 +17,7 @@
     flex: 1;
    
 }
+input{
+    border-radius: 30px;
+    width: 30vh;
+}
